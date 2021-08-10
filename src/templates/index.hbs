@@ -1,0 +1,90 @@
+<html>
+
+<head>
+    <title>Cypress mocha reports</title>
+</head>
+
+<body>
+    <style>
+        body {
+            font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+                "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .styled-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            min-width: 80%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .styled-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+        }
+
+        .styled-table tbody tr {
+            border-bottom: thin solid #dddddd;
+        }
+
+        .styled-table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+
+        .styled-table tbody tr:last-of-type {
+            border-bottom: thin solid #009879;
+        }
+
+        .styled-table tbody tr:nth-of-type(even) {
+            font-weight: bold;
+            color: #009879;
+        }
+
+        .error-row {
+            background-color: #ff3e3e;
+            color: white;
+        }
+    </style>
+    {{{d3}}}
+    <div class="container">
+        <h1>{{title}}</h1>
+
+        {{#each reportData}}
+        <h4>{{this.dir}}</h4>
+        {{{chart}}}
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    {{#each this.list.[1]}}
+                    <th>{{capitalize @key}}</th>
+                    {{/each}}
+                </tr>
+            </thead>
+            <tbody>
+                {{#each this.list}}
+                <tr>
+                    {{#each this}}
+                    <td>{{this}}</td>
+                    {{/each}}
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        {{/each}}
+
+    </div>
+</body>
+
+</html>

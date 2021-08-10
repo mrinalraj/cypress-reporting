@@ -1,0 +1,58 @@
+<div id="my_chart"></div>
+
+<script>
+
+    var width = 300
+    height = 300
+    margin = 40
+
+    var radius = Math.min(width, height) / 2 - margin
+
+    var svg = d3.select("#my_chart")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .append("g")
+        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+    #data-placeholder#
+
+    var color = d3.scaleOrdinal()
+        .domain(chart_data)
+        .range(["#AAFAC8", "#C7FFED", "#558564", "#1F363D", "#040F0F"])
+
+    var pie = d3.pie()
+        .value(function (d) { return d.value; })
+    var data_ready = pie(d3.entries(chart_data))
+
+    var arcGenerator = d3.arc()
+        .innerRadius(0)
+        .outerRadius(radius)
+
+    svg
+        .selectAll('whatever')
+        .data(data_ready)
+        .enter()
+        .append('path')
+        .attr('d', d3.arc()
+            .innerRadius(0)
+            .outerRadius(radius)
+        )
+        .attr('fill', function (d) { return (color(d.data.key)) })
+
+    
+    svg
+        .selectAll('whatever')
+        .data(data_ready)
+        .enter()
+        .append('text')
+        .text(function(d){
+            if(d.data.value)
+                return d.data.key
+            return ''
+        })
+        .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
+        .style("text-anchor", "middle")
+        .style("font-size", 12)
+
+</script>
