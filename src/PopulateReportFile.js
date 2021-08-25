@@ -9,7 +9,10 @@ module.exports = async (data, dirs, title, keys) => {
   );
 
   const reportData = dirs.map((dir) => {
-    const list = data.filter((row) => row.dir === dir);
+    const list = data
+      .filter((row) => row.dir === dir)
+      .map(({ dir, ...rest }) => ({ ...rest }));
+
     const chartData = Object.assign({}, ...keys.map((keys) => ({ [keys]: 0 })));
 
     list.forEach((row) => {

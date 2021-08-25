@@ -41,18 +41,6 @@
         .attr('fill', function (d) { return (color(d.data.key)) })
 
     
-    svg
-        .selectAll('whatever')
-        .data(data_ready)
-        .enter()
-        .append('text')
-        .text(function(d){
-            if(d.data.value)
-                return d.data.key
-            return ''
-        })
-        .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
-        .style("text-anchor", "middle")
-        .style("font-size", 12)
+    
 
 </script>
